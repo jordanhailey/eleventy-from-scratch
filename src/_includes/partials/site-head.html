@@ -7,12 +7,11 @@
       </a>
       <nav class="[ nav ] [ site-head__nav ] [ font-sans ]" aria-label="Primary">
         <ul class="nav__list">
+          {% for item in navigation.items %}
           <li>
-            <a href="/">Home</a>
+            <a href="{{ item.url }}">{{ item.text }}</a>
           </li>
-          <li>
-            <a href="/work">Work</a>
-          </li>
+          {% endfor %}
         </ul>
       </nav>
     </div>
