@@ -1,7 +1,8 @@
 {% extends "layouts/base.html" %}
 
 {% set pageHeaderTitle = title %}
-
+{# Grab other posts that aren’t this one for the 'more from the blog' feed #}
+{% set recommendedPosts = helpers.getSiblingContent(collections.blog, page) %}
 {# Render post date and any tags that this post has been filed under #}
 {% set pageHeaderSummary %}
   <time datetime="{{ date | w3DateFilter }}">{{ date | dateFilter }}</time>
@@ -25,6 +26,13 @@
       {{ content | safe }}
     </div>
   </article>
+  {% if recommendedPosts %}
+    <footer class="recommended-posts">
+      {% set postListItems = recommendedPosts %}
+      {% set postListHeadline = 'More from the blog' %}
+      {% include "partials/post-list.html" %}
+    </footer>
+  {% endif %}
 
   {% include "partials/cta.html" %}
 {% endblock %}
